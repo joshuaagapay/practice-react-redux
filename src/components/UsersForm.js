@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {addUsers} from '../actions/usersActions.js'
 
 
-class PirateForm extends React.Component{
+class UserForm extends React.Component{
   state = {
     name: null,
     age: null,
     position: null
+  }
+
+  componentDidMount(){
+    console.log(this.props);
   }
 
   handleChange = (e) =>{
@@ -18,18 +23,18 @@ class PirateForm extends React.Component{
   submitChange = (e) =>{
     e.preventDefault();
 
-    let newPirates = {};
+    let newUsers = {};
 
-    newPirates.id = Math.random();
-    newPirates.name = this.state.name;
-    newPirates.age = this.state.age;
-    newPirates.position = this.state.position;
+    newUsers.id = Math.random();
+    newUsers.name = this.state.name;
+    newUsers.age = this.state.age;
+    newUsers.position = this.state.position;
     
-    this.props.addPirates(newPirates);
+    this.props.addUsers(newUsers);
     this.refs.form.reset();   
     this.refs.name.focus();      
   }
-    
+  
   render(){
   
     return(
@@ -50,11 +55,10 @@ class PirateForm extends React.Component{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addPirates: (users) => {
-      dispatch({type:'ADD_USERS', users:users})
-      
+    addUsers: (users) => {
+      dispatch(addUsers(users)) 
     }
   }
 }
 
-export default connect(null,mapDispatchToProps)(PirateForm)
+export default connect(null,mapDispatchToProps)(UserForm)

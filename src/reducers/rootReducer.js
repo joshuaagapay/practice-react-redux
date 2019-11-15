@@ -1,3 +1,8 @@
+import {ADD_USERS} from '../actions/types'
+import {DELETE_USERS} from '../actions/types'
+
+
+
 const initState = {
   users: []
 }
@@ -6,14 +11,14 @@ const rootReducer = (state = initState, action) => {
   console.log(action);
   switch (action.type) {
 
-    case 'ADD_USERS':
+    case ADD_USERS:
       const users = [action.users, ...state.users];
       return {
         ...state,
         users: users
       }
 
-    case 'DELETE_USERS':
+    case DELETE_USERS:
       const newUsers = state.users.filter(element => {
         return action.id !== element.id
       });

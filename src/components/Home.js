@@ -1,7 +1,10 @@
 import React from 'react'
 import Users from './Users'
-import PirateForm from './PirateForm'
+import UsersForm from './UsersForm'
 import { connect } from 'react-redux'
+import {deleteUsers} from '../actions/usersActions'
+
+
 
 class Home extends React.Component {
   
@@ -11,14 +14,12 @@ class Home extends React.Component {
     return(
       <div className="container">
         <h1>Hello New World</h1>
-        <PirateForm />
+        <UsersForm />
         <Users users={users} deleteUsers={this.props.deleteUsers}/>
       </div>
     )
   }
 }
-
-
 
 const mapStateToProps = state =>({
   users: state.users
@@ -26,7 +27,7 @@ const mapStateToProps = state =>({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteUsers: (id) =>{
-    dispatch({type:'DELETE_USERS', id: id})
+    dispatch(deleteUsers(id))
   }
 
 })
